@@ -4,7 +4,7 @@ How to start locally:
 
 ```
 git clone https://github.com/darius142/styleguide-todo
-cd react-styleguidist/examples/cra
+cd styleguide-todo
 npm install
 npm run styleguide
 ```
