@@ -3,7 +3,7 @@
 How to start locally:
 
 ```
-git clone https://github.com/styleguidist/react-styleguidist.git
+git clone https://github.com/darius142/styleguide-todo
 cd react-styleguidist/examples/cra
 npm install
 npm run styleguide
