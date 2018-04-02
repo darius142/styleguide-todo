@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 * {
     box-sizing: border-box;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
 body {
     background: white;
+    font-family: 'Roboto', sans-serif;
 }
 
 .todo-wrapper {
@@ -14,7 +16,7 @@ body {
     background: white;
     padding: 1em;
 }
-
+/*
 h1 {
     color: #3f51b5;
 }
@@ -25,9 +27,9 @@ input, button {
     display: inline-block;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.19);
 }
-/*input, button, div.todo-wrapper {
+input, button, div.todo-wrapper {
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-}*/
+}
 input {
     border: 2px solid #3f51b5;
 }
@@ -49,34 +51,8 @@ button:last-of-type {
     margin-right: 0;
 }
 
-td:first-of-type {
-    width: 100%;
-}
 
-th:last-of-type,
-td:last-of-type {
-    text-align: right;
-}
 
-th {
-    text-align: left;
-}
-
-th, td {
-    padding: 10px 0;
-    color: #3f51b5;
-}
-
-table {
-    width: 100%;
-}
-
-p.tutorial {
-    padding: 10px;
-    color: #3f51b5;
-    background: #ecf0f1;
-    text-align: center;
-}
 
 form.create-todo-form {
     border-bottom: 1px solid #ecf0f1;
@@ -91,8 +67,79 @@ form.create-todo-form input {
 tr.todo-not-completed td:first-of-type {
     color: #e74c3c;
 }
-
-tr.todo-completed td:first-of-type {
+*/
+/*tr.todo-completed td:first-of-type {
     text-decoration: line-through;
+    color:red;
 }
 
+th, td {
+    color: #3f51b5;
+}
+*/
+
+/*
+button{
+    border: none;
+    border-color: transparent;;
+    }
+*/
+
+
+
+
+
+td:first-of-type {
+    width: 80%;
+}
+
+td:last-of-type {
+    text-align: right;
+}
+
+
+
+th, td {
+    color: #3f51b5;
+}
+
+table {
+    width: 100%;
+}
+
+label{
+  color: #3f51b5;  
+}
+
+
+.todo-completed label  {
+    text-decoration: line-through;
+    color:#f50057;
+}
+
+
+
+.buttons__action {
+    width: 200px;
+    display: inline;
+}
+
+.header{
+    width: 100%;
+    height: 30px; 
+    text-align: right;
+    padding: 10px;
+    color: #3f51b5;
+}
+
+.left{
+    float: left;
+}
+
+
+form{
+    display: inline;
+}
+label{
+    margin-right: 110px;
+}

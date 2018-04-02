@@ -1,87 +1,157 @@
 import React from "react";
 import Button from 'material-ui/Button';
 import Card, { CardContent } from 'material-ui/Card';
+import Delete from 'material-ui-icons/Delete';
+import Edit from 'material-ui-icons/Edit';
+import Save from 'material-ui-icons/Save';
+import Cancel from 'material-ui-icons/Cancel';
+import { withStyles } from 'material-ui/styles';
+import classNames from 'classnames';
+import Input from 'material-ui/Input';
 
 
-const styles = {
-  card: {
-    minWidth: 275,
-    marginBottom: 30,
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    marginBottom: 30,
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-};
+const styles = theme => ({
+    card: {
+        //minWidth: 500,
+        margin: theme.spacing.unit,
+        paddingRight: 0,
+        width: 450,
+    },
+    rightIcon: {
+        marginLeft: theme.spacing.unit,
+    },
+    button: {
+        margin: theme.spacing.unit,
+    },
+    iconSmall: {
+        fontSize: 20,
+    },
+    input: {
+        margin: theme.spacing.unit,
+        width: 150,
+    },
+});
 
 /**
  * General component, for creating list items.
  */
 
-export default class TodosListItem extends React.Component {
+class TodosListItem extends React.Component {
     constructor (props) {
         super(props);
 
+        const { task } = this.props;
+
+        this.state = {value: task};
         this.state = {
             isEditing: false
         };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.editTask = this.editTask.bind(this);
     }
+
+    handleChange(event) {
+        this.setState({value: event.target.value});
+      }
 
     renderActionSection () {
         if (this.state.isEditing) {
+            const {classes} = this.props;
             return (
-                <td>
-                    <Button variant="raised" color="secondary" onClick={this.editTask.bind(this)}>Save</Button>
-                    <Button variant="raised" color="primary" className="cancel-btn" onClick={this.setEditState.bind(this, false)}>Cancel</Button>
-                </td>
+                <div className="buttons__action">
+                    <Button 
+                        variant="raised" 
+                        color="secondary" 
+                        size="small"
+                        className={classes.button} 
+                        onClick={this.editTask.bind(this)}
+                    >
+                        Save
+                        <Save 
+                            className={classNames(classes.rightIcon, classes.iconSmall)}/>
+                    </Button>
+                    <Button 
+                        variant="raised" 
+                        color="primary" 
+                        size="small"
+                        className={classes.button} 
+                        onClick={this.setEditState.bind(this, false)}
+                    >
+                        Cancel
+                        <Cancel className={classNames(classes.rightIcon, classes.iconSmall)}/>
+                    </Button>
+                </div>
             );
         }
-            return (
-                <td>
-                    <Button variant="raised" color="primary" onClick={this.setEditState.bind(this, true)}>Edit</Button>
-                    <Button variant="raised" color="primary" className="delete-btn" onClick={this.deleteTask.bind(this)}>Delete</Button>
-                </td>
-            );
+        const {classes} = this.props;
+        return (
+            <div className="buttons__action">
+                <Button 
+                    variant="raised" 
+                    color="primary" 
+                    size="small"
+                    className={classes.button} 
+                    onClick={this.setEditState.bind(this, true)}
+                >
+                    Edit
+                    <Edit className={classNames(classes.rightIcon, classes.iconSmall)}/>
+                </Button>
+                <Button 
+                    variant="raised" 
+                    color="primary" 
+                    size="small" 
+                    className={classes.button} 
+                    onClick={this.deleteTask.bind(this)}
+                >
+                    Delete
+                    <Delete className={classNames(classes.rightIcon, classes.iconSmall)}/>
+                </Button>
+            </div>
+        );
     }
 
     renderTask () {
-        const { task, isCompleted } = this.props;
+        const { task } = this.props;
         const taskStyle = {
             cursor: "pointer"
         };
 
         if (this.state.isEditing) {
+            const {classes} = this.props;
             return (
-                <td>
-                    <form onSubmit={this.editTask.bind(this)}>
-                        <input ref="task" defaultValue={task} autoFocus />
+                
+                    <form onSubmit={this.editTask}>
+                        <Input 
+                            value={this.state.value}
+                            defaultValue={task} 
+                            autoFocus 
+                            type="text"
+                            maxLength="10"
+                            onChange={this.handleChange}
+                            className={classes.input}
+                            inputProps={{maxLength: 15}}
+                        />
                     </form>
-                </td>
+                
             );
         }
 
-        return (
-            <td onClick={this.toggleTask.bind(this)} style={taskStyle}>{task}</td>
+        return (        
+            <label onClick={this.toggleTask.bind(this)} style={taskStyle}>{task}</label> 
         );
     }
 
     render () {
+        const {classes} = this.props;
         const { isCompleted } = this.props;
         return (
-            <Card className={styles.card}>
+            <Card className={classes.card} >
                 <CardContent>
-                    <tr className={"todo-" + (isCompleted ? "completed" : "not-completed") }>
+                    <div className={"todo-" + (isCompleted ? "completed" : "not-completed") }>
                         {this.renderTask()}
                         {this.renderActionSection()}
-                    </tr>
+                    </div>
                 </CardContent>
             </Card>
         )
@@ -98,10 +168,12 @@ export default class TodosListItem extends React.Component {
     }
 
     editTask (e) {
-        this.props.editTask(this.props.id, this.refs.task.value);
+        const { task } = this.props;
+        this.props.editTask(this.props.id, this.state.value);
         this.setState({
             isEditing: false
         });
+        this.setState({value: task});
         e.preventDefault();
     }
 
@@ -109,3 +181,5 @@ export default class TodosListItem extends React.Component {
         this.props.deleteTask(this.props.id);
     }
 }
+
+export default withStyles(styles)(TodosListItem);

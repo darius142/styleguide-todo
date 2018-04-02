@@ -31,3 +31,25 @@ Cancel button:
 </button>
 
 ```
+
+
+### Card
+
+### Import
+
+`import Card from 'styleguide-todo';`
+
+####
+
+```jsx
+<Card className={classes.card} >
+	<CardContent>
+	    <div className={"todo-" + (isCompleted ? "completed" : "not-completed") }>
+	        {this.renderTask()}
+	        {this.renderActionSection()}
+	    </div>                   
+	</CardContent>
+</Card>
+```
+
+#### 

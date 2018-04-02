@@ -26,12 +26,12 @@ export default class TodosList extends React.Component {
             return <p className="tutorial">Create your first todo!</p>;
         }
         return (
-            <table>
+            <div>
                 {<TodosListHeader />}
-                <tbody>
+                
                     {this.renderItems()}
-                </tbody>
-            </table>
+                
+            </div>
         )
     }
 }

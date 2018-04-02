@@ -1,26 +1,10 @@
 import React from "react";
 import TodosList from "./components/TodosList/TodosList"
 import CreateTodo from "./components/CreateTodo/CreateTodo";
-import css from "./style.css";
-import CssBaseline from 'material-ui/CssBaseline';
-import { createMuiTheme } from 'material-ui/styles';
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      light: '#757ce8',
-      main: '#3f50b5',
-      dark: '#002884',
-      contrastText: '#fff',
-    },
-    secondary: {
-      light: '#ff7961',
-      main: '#f44336',
-      dark: '#ba000d',
-      contrastText: '#000',
-    },
-  },
-});
+import "./style.css";
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
 
 const todos = {
     items: [],
@@ -71,8 +55,17 @@ export default class App extends React.Component {
     render () {
         return (
             <div className="todo-wrapper">
-            <CssBaseline />
-                <h1>React Todo App</h1>
+                <AppBar position="static" color="default">
+                    <Toolbar>
+                        <Typography 
+                            variant="title" 
+                            color="secondary" 
+                        >
+                        React Todo app
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+                
                 <CreateTodo
                     createTask={this.createTask.bind(this)}
                 />
