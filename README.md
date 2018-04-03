@@ -2,7 +2,7 @@
 
 React TodoList Styleguidist Create React App style guide
 
-![Alt Text](<img src="./public/main.gif"/>)
+<img src="./public/main.gif"/>
 
 
 ## Getting Started 
