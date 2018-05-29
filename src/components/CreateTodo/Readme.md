@@ -1,8 +1,15 @@
+
+
 Type anything that you want inside the form:
 
+
+### Example
+
+**Standard Use**
+
+For example:
+
 ```jsx
-<form className="create-todo-form">
-    <input type="text" placeholder="What do I need to do..." ref="taskMessage" autoFocus/>
-    <button>Create</button>
-</form>
+<CreateTodo />
 ```
+

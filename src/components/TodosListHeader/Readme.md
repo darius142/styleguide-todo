@@ -1,9 +1,23 @@
 Type into th elements to change header:
 
+
 ```jsx
-<tr>
-    <th>Task</th>
-    <th>Action</th>
-</tr>
+<TodosListHeader />
+```
+
+### Examples
+
+**Standard Use**
+
+Provides a standard format for page/section headings
+
+```
+<TodosListHeader />
+```
+
+**Color**
+
+```
+<TodosListHeader color='primary' />
 ```
 

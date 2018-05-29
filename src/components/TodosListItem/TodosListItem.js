@@ -36,7 +36,7 @@ const styles = theme => ({
  * General component, for creating list items.
  */
 
-class TodosListItem extends React.Component {
+export class TodosListItem extends React.Component {
     constructor (props) {
         super(props);
 
